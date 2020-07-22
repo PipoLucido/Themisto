@@ -46,3 +46,5 @@ C -->|One| D[Laptop]
 C -->|Two| E[iPhone]
 C -->|Three| F[Car]
 ```
+
+[Flowchart Syntax](http://knsv.github.io/mermaid/#flowcharts-basic-syntax)
