@@ -1,0 +1,19 @@
+{
+  "name": "themisto",
+  "version": "1.0.0",
+  "description": "PUPPETERsearcherAutomatization",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "automatization",
+    "searcher",
+    "scrapping"
+  ],
+  "author": "Rodrigo",
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^5.2.0"
+  }
+}
