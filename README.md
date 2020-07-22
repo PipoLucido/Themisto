@@ -38,13 +38,4 @@ Puppeter utiliza mayor mente **async** **await** debido a que debemos tener en c
 Un ejemplo de funcionamiento seria que a travez de themisto se programara una secuencia en la cual, se ingresan usuario y contraseña para logearse en varios sitios a la vez :
 
 
-```mermaid
-graph TD
-A[Christmas] -->|Get money| B(Go shopping)
-B --> C{Let me think}
-C -->|One| D[Laptop]
-C -->|Two| E[iPhone]
-C -->|Three| F[Car]
-```
 
-[Flowchart Syntax](http://knsv.github.io/mermaid/#flowcharts-basic-syntax)
