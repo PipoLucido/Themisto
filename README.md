@@ -22,15 +22,16 @@ Themisto ingresa a un sitio web y abre un navegador preparado para ser controlad
 ```
 Puppeter utiliza mayor mente **async** **await** debido a que debemos tener en cuenta el tiempo en el que el navegador se tarda en realizar ciertas operaciones :
 
-    async () => { 
+
+```javascript
+async () => { 
 	    const  browser = await  puppeteer.launch({
 	    headless: false,
 	    defaultViewport:null
 	    });
-    
-	    const  page = await  browser.newPage();
+    	    const  page = await  browser.newPage();
     }
-
+```
 
 
 
