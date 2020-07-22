@@ -37,7 +37,7 @@ Puppeter utiliza mayor mente **async** **await** debido a que debemos tener en c
 
 Un ejemplo de funcionamiento seria que a travez de themisto se programara una secuencia en la cual, se ingresan usuario y contraseña para logearse en varios sitios a la vez :
 
-```mermaid 
+
 graph LR 
 A(Themisto: *ingresa usuario y contraseña) -- datos ingresados --> B[Inicio de secion en appA] 
 A -- datos ingresados --> C[Inicio de secion en appB] 
