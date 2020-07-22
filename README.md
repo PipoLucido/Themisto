@@ -39,7 +39,7 @@ Un ejemplo de funcionamiento seria que a travez de themisto se programara una se
 
 
 graph LR;
-A(Themisto: *ingresa usuario y contraseña) -- datos ingresados --> B[Inicio de secion en appA];
-A -- datos ingresados --> C[Inicio de secion en appB];
-A --datos ingresados--> D[Inicio de secion en appC];
+A(Themisto: *ingresa usuario y contraseña)--datos ingresados-->B[Inicio de secion en appA];
+A--datos ingresados-->C[Inicio de secion en appB];
+A--datos ingresados-->D[Inicio de secion en appC];
 
