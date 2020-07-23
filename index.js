@@ -1,25 +1,3 @@
-/*let miPrimeraPromise = new Promise((resolve, reject) => {
-  
-    setTimeout(function(){
-      resolve("¡Éxito!"); // ¡Todo salió bien!
-    }, 3350);
-
-});
-
-const arrow = async ( ) => {
-
-   console.log( await miPrimeraPromise )
-    
-    console.log("hola2")
-
-}
-
-arrow()
-
-await page.screenshot({path: 'example.png'});
-
-*/
-
 const puppeteer = require('puppeteer');
 
 (async () => {
