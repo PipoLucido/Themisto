@@ -39,4 +39,13 @@ async () => {
 
 Un ejemplo de funcionamiento seria que a travez de themisto se programara una secuencia en la cual, se ingresan usuario y contraseña para logearse en varios sitios a la vez.
 
+Para comenzar a utilizar la aplicacion se debe clonar o descargar el repositorio en su maquina y instalar las dependencias de npm
+```
+npm install
+```
+Luego ejecutaremos el archivo index.js con un parametro extra en la ejecucion el cual sera el nombre del articulo que deseamos buscar en el sitio web
+```
+node index.js silla
+```
+
 
