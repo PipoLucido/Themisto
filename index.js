@@ -1,8 +1,14 @@
 const puppeteer = require('puppeteer');
+const axios = require('axios');
+const {argv} = require('yargs')
 
-(async () => {
+
+
+async function puppet(arg){
+
+
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true, //CAMBIAR A FALSE PARA VER NAVEGADOR
     defaultViewport:null
   });
   let pageData ;
@@ -14,13 +20,13 @@ const puppeteer = require('puppeteer');
 
 
     //WebPage:
-  await page.goto('https://www.easy.com.ar');
+  await page.goto('https://www.easy.com.ar/tienda/es/easyar');
 
     //WhatToDo: Search all products by name on page and get all data of the products that
     //the search engine found, then save this data on the data base 
 
   //Write 'product' on input
-  await page.type(buscadorInput,"silla");
+  await page.type(buscadorInput,arg);
 
   //Click on search icon
   await page.click(buscadorButton);
@@ -32,7 +38,10 @@ const puppeteer = require('puppeteer');
   //get url from articles
   const urlArticles = await page.$$(".thumb-name");
   let url;
-  let data;
+  let data = {
+    job: arg,
+    array:[]
+  };
 
   console.log("Cantidad de articulos: "+urlArticles.length)
 
@@ -52,6 +61,12 @@ const puppeteer = require('puppeteer');
 
     //Abrir url en nueva tab para extraer data
     pageData = await browser.newPage();
+
+
+    // Configure the navigation timeout
+    await pageData.setDefaultNavigationTimeout(0);
+
+    //Navigate to webSite
     await pageData.goto(url);
 
     //pageData focus
@@ -112,11 +127,22 @@ const puppeteer = require('puppeteer');
     SKU = await SKU.jsonValue();
     
 
-    console.log('{ Titulo: '+innerTitle+
+   /* console.log('{ Titulo: '+innerTitle+
     ', precio: '+precio+
     ', '+idArticle+
     ', Imagenes: '+urlImagenes+
-    ', SKU: '+SKU+' }');
+    ', SKU: '+SKU+' }');*/
+
+    console.log('Wait.. Scrapping ..')
+
+    data.array.push({
+      title:innerTitle,
+                price:parseInt(precio.split('.').join("")),
+                id:parseInt(idArticle.match(/\d+/g).map(Number)),
+                SKD:SKU,
+                img: [urlImagenes]
+    })
+   
 
     //LimpiarVariables
     urlImagenes=[];
@@ -125,9 +151,45 @@ const puppeteer = require('puppeteer');
     pageData.close()
   }
   
+  console.log(data)
+   //get 
+    
+    await axios.get('http://127.0.0.1:3000/jobs/save', {
+      params: {
+        datos: data
+      }
+    })
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });  
+    
 
 
   
   //CloseBrowser
   await browser.close();
-})();
+};
+
+
+//:id es el argumento que es el articulo a buscar 
+axios.get('http://127.0.0.1:3000/jobs/check/'+argv._[0])
+.then(function (response) {
+  // handle success
+  //console.log(response);
+
+  if(response.data == false){
+    puppet(argv._[0])
+  }
+  
+
+})
+.catch(function (error) {
+  // handle error
+  console.log(error);
+});
